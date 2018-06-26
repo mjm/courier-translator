@@ -1,5 +1,5 @@
 module Courier
-  module Translator
-    VERSION = "0.1.0"
+  class Translator
+    VERSION = '0.1.0'.freeze
   end
 end
