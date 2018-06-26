@@ -5,7 +5,11 @@ module Courier
     # A small app that provides the translator as an HTTP service.
     class App < Sinatra::Base
       get '/' do
-        'Hello world!'
+        Courier::Translator.new(params['text']).translate
+      end
+
+      post '/' do
+        Courier::Translator.new(request.body).translate
       end
     end
   end

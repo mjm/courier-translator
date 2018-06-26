@@ -1,5 +1,8 @@
 require "bundler/setup"
 require "courier/translator"
+require "rack/test"
+
+ENV['RACK_ENV'] = 'test'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
