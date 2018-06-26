@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'courier/translator/app'
+Courier::Translator::App.run!
