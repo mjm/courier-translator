@@ -62,4 +62,12 @@ RSpec.describe Courier::Translator do
       should translate_to %(This is some #content. http://example.com/foo/bar)
     end
   end
+
+  context 'when the input has multiple links' do
+    let(:input) { %(This is <a href="http://example.com/foo">some</a> <a href="http://example.com/bar">#content.</a>) }
+
+    it 'appends each URL at the end in the order they appear' do
+      should translate_to %(This is some #content. http://example.com/foo http://example.com/bar)
+    end
+  end
 end
