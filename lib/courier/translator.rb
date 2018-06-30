@@ -1,3 +1,6 @@
+require 'nokogiri'
+require 'courier/tweet_document'
+
 module Courier
   # Transforms a blog post into text that would make sense to tweet.
   class Translator
@@ -8,7 +11,18 @@ module Courier
     end
 
     def translate
-      input
+      parser.parse(input)
+      document.contents
+    end
+
+    private
+
+    def document
+      @document ||= Courier::TweetDocument.new
+    end
+
+    def parser
+      @parser ||= Nokogiri::HTML::SAX::Parser.new(document)
     end
   end
 end

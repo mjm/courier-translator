@@ -1,5 +1,7 @@
 require 'sinatra/base'
 
+require 'courier/translator'
+
 module Courier
   class Translator
     # A small app that provides the translator as an HTTP service.
