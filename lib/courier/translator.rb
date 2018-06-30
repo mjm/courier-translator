@@ -11,8 +11,9 @@ module Courier
     end
 
     def translate
+      return @translated if @translated
       parser.parse(input)
-      document.contents
+      @translated = document.contents
     end
 
     private

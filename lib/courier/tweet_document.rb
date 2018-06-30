@@ -7,9 +7,15 @@ module Courier
 
     def initialize
       @contents = ''
+      @urls = []
     end
 
     def start_element(name, attrs = [])
+      case name
+      when 'a'
+        attrs = Hash[attrs]
+        @urls << attrs['href'] if attrs.key? 'href'
+      end
     end
 
     def characters(string)
@@ -27,6 +33,7 @@ module Courier
 
     def end_document
       @contents.chomp! ''
+      @contents << " #{@urls.join(' ')}" unless @urls.empty?
     end
   end
 end

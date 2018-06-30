@@ -8,7 +8,13 @@ RSpec.describe Courier::Translator do
   end
 
   matcher :translate_to do |expected|
-    match { |actual| actual.translate == expected }
+    match do |actual|
+      actual.translate == expected
+    end
+
+    failure_message do |actual|
+      "expected #{actual.input.inspect} to translate to #{expected.inspect},\n but instead translated to #{actual.translate.inspect}"
+    end
   end
 
   context 'when the input is an empty string' do
@@ -46,6 +52,14 @@ RSpec.describe Courier::Translator do
 
     it 'converts the tags to line breaks' do
       should translate_to %(Some content\nSome more content\nThis is it.)
+    end
+  end
+
+  context 'when the input has a link' do
+    let(:input) { %(This is <a href="http://example.com/foo/bar">some #content.</a>) }
+
+    it 'appends the URL at the end' do
+      should translate_to %(This is some #content. http://example.com/foo/bar)
     end
   end
 end
