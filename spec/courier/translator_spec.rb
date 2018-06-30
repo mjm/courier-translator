@@ -7,9 +7,13 @@ RSpec.describe Courier::Translator do
     expect(Courier::Translator::VERSION).not_to be nil
   end
 
+  matcher :translate_to do |expected|
+    match { |actual| actual.translate == expected }
+  end
+
   context 'when the input is an empty string' do
     it 'translates an empty string' do
-      expect(translated).to eq ''
+      should translate_to ''
     end
   end
 
@@ -17,7 +21,7 @@ RSpec.describe Courier::Translator do
     let(:input) { 'This is a very simple tweet.' }
 
     it 'translates to the input string' do
-      expect(translated).to eq input
+      should translate_to input
     end
   end
 
@@ -25,7 +29,7 @@ RSpec.describe Courier::Translator do
     let(:input) { %(<p>This is also a simple tweet.</p>) }
 
     it 'strips the tags' do
-      expect(translated).to eq 'This is also a simple tweet.'
+      should translate_to 'This is also a simple tweet.'
     end
   end
 
@@ -33,7 +37,7 @@ RSpec.describe Courier::Translator do
     let(:input) { %(<p>Paragraph 1</p><p>Paragraph 2</p>) }
 
     it 'adds a blank line between the paragraphs' do
-      expect(translated).to eq %(Paragraph 1\n\nParagraph 2)
+      should translate_to %(Paragraph 1\n\nParagraph 2)
     end
   end
 
@@ -41,7 +45,7 @@ RSpec.describe Courier::Translator do
     let(:input) { %(Some content<br>Some more content<br />This is it.) }
 
     it 'converts the tags to line breaks' do
-      expect(translated).to eq %(Some content\nSome more content\nThis is it.)
+      should translate_to %(Some content\nSome more content\nThis is it.)
     end
   end
 end
