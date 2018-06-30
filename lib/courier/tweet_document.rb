@@ -20,6 +20,8 @@ module Courier
       case name
       when 'p'
         contents << "\n\n"
+      when 'br'
+        contents << "\n"
       end
     end
 

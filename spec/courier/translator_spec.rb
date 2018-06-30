@@ -36,4 +36,12 @@ RSpec.describe Courier::Translator do
       expect(translated).to eq %(Paragraph 1\n\nParagraph 2)
     end
   end
+
+  context 'when the input has line break tags' do
+    let(:input) { %(Some content<br>Some more content<br />This is it.) }
+
+    it 'converts the tags to line breaks' do
+      expect(translated).to eq %(Some content\nSome more content\nThis is it.)
+    end
+  end
 end
