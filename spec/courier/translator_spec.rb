@@ -26,7 +26,7 @@ RSpec.describe Courier::Translator do
   end
 
   context 'when the input has undesired HTML tags' do
-    let(:input) { %(<p>This is also a simple tweet.</p>) }
+    let(:input) { %(<p>This is <strong>also</strong> a si<em>mp</em>le tweet.</p>) }
 
     it 'strips the tags' do
       should translate_to 'This is also a simple tweet.'
