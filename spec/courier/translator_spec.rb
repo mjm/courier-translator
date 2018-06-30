@@ -70,4 +70,12 @@ RSpec.describe Courier::Translator do
       should translate_to %(This is some #content. http://example.com/foo http://example.com/bar)
     end
   end
+
+  context 'when the input has a block quote' do
+    let(:input) { %(<p>Check this thing out:</p><blockquote>I said a thing</blockquote>) }
+
+    it 'wraps the quote in quotation marks' do
+      should translate_to %(Check this thing out:\n\n"I said a thing")
+    end
+  end
 end
