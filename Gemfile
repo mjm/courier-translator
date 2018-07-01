@@ -10,3 +10,13 @@ gem 'puma'
 group :development do
   gem 'rerun'
 end
+
+group :development, :test do
+  gem 'bundler', '~> 1.16'
+  gem 'rake', '~> 10.0'
+end
+
+group :test do
+  gem 'rack-test'
+  gem 'rspec', '~> 3.0'
+end
