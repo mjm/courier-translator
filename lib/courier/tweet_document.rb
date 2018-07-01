@@ -16,7 +16,7 @@ module Courier
         attrs = Hash[attrs]
         @urls << attrs['href'] if attrs.key? 'href'
       when 'blockquote'
-        contents << '"'
+        contents << '“'
       end
     end
 
@@ -31,7 +31,7 @@ module Courier
       when 'br'
         contents << "\n"
       when 'blockquote'
-        contents << '"'
+        contents << '”'
       end
     end
 

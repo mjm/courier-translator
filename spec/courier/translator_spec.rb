@@ -90,7 +90,7 @@ RSpec.describe Courier::Translator do
     end
 
     it 'wraps the quote in quotation marks' do
-      should translate_to %(Check this thing out:\n\n"I said a thing")
+      should translate_to %(Check this thing out:\n\n“I said a thing”)
     end
   end
 
