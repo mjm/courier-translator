@@ -93,4 +93,15 @@ RSpec.describe Courier::Translator do
       should translate_to %(Check this thing out:\n\n"I said a thing")
     end
   end
+
+  context 'when the input has HTML entities' do
+    let(:input) do
+      %(<p>I&#8217;m having a &#8220;great time&#8221;. Here's
+      &lt;strong&gt;some html&lt;/strong&gt;)
+    end
+
+    it 'unescapes the entities' do
+      should translate_to "I’m having a “great time”. Here's <strong>some html</strong>"
+    end
+  end
 end
