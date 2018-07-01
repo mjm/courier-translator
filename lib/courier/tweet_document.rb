@@ -21,7 +21,7 @@ module Courier
     end
 
     def characters(string)
-      @contents << string.gsub(/\s+/, ' ')
+      contents << string.gsub(/\s+/, ' ')
     end
 
     def end_element(name)
