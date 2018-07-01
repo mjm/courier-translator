@@ -36,8 +36,7 @@ module Courier
     end
 
     def end_document
-      contents.chomp! ''
-      contents.chomp! ' '
+      contents.strip!
       contents << " #{@urls.join(' ')}" unless @urls.empty?
     end
   end

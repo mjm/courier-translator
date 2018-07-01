@@ -104,4 +104,14 @@ RSpec.describe Courier::Translator do
       should translate_to "I’m having a “great time”. Here's <strong>some html</strong>"
     end
   end
+
+  context 'when the input has a trailing newline after a paragraph' do
+    let(:input) do
+      "<p>This is some text</p>\n"
+    end
+
+    it 'strips the trailing space' do
+      should translate_to 'This is some text'
+    end
+  end
 end
