@@ -32,7 +32,9 @@ RSpec.describe Courier::Translator do
   end
 
   context 'when the input has undesired HTML tags' do
-    let(:input) { %(<p>This is <strong>also</strong> a si<em>mp</em>le tweet.</p>) }
+    let(:input) do
+      %(<p>This is <strong>also</strong> a si<em>mp</em>le tweet.</p>)
+    end
 
     it 'strips the tags' do
       should translate_to 'This is also a simple tweet.'
@@ -40,7 +42,9 @@ RSpec.describe Courier::Translator do
   end
 
   context 'when the input has multiple paragraphs' do
-    let(:input) { %(<p>Paragraph 1</p><p>Paragraph 2</p>) }
+    let(:input) do
+      %(<p>Paragraph 1</p><p>Paragraph 2</p>)
+    end
 
     it 'adds a blank line between the paragraphs' do
       should translate_to %(Paragraph 1\n\nParagraph 2)
@@ -48,7 +52,9 @@ RSpec.describe Courier::Translator do
   end
 
   context 'when the input has line break tags' do
-    let(:input) { %(Some content<br>Some more content<br />This is it.) }
+    let(:input) do
+      %(Some content<br>Some more content<br />This is it.)
+    end
 
     it 'converts the tags to line breaks' do
       should translate_to %(Some content\nSome more content\nThis is it.)
@@ -56,7 +62,9 @@ RSpec.describe Courier::Translator do
   end
 
   context 'when the input has a link' do
-    let(:input) { %(This is <a href="http://example.com/foo/bar">some #content.</a>) }
+    let(:input) do
+      %(This is <a href="http://example.com/foo/bar">some #content.</a>)
+    end
 
     it 'appends the URL at the end' do
       should translate_to %(This is some #content. http://example.com/foo/bar)
@@ -64,7 +72,9 @@ RSpec.describe Courier::Translator do
   end
 
   context 'when the input has multiple links' do
-    let(:input) { %(This is <a href="http://example.com/foo">some</a> <a href="http://example.com/bar">#content.</a>) }
+    let(:input) do
+      %(This is <a href="http://example.com/foo">some</a> <a href="http://example.com/bar">#content.</a>)
+    end
 
     it 'appends each URL at the end in the order they appear' do
       should translate_to %(This is some #content. http://example.com/foo http://example.com/bar)
@@ -72,7 +82,9 @@ RSpec.describe Courier::Translator do
   end
 
   context 'when the input has a block quote' do
-    let(:input) { %(<p>Check this thing out:</p><blockquote>I said a thing</blockquote>) }
+    let(:input) do
+      %(<p>Check this thing out:</p><blockquote>I said a thing</blockquote>)
+    end
 
     it 'wraps the quote in quotation marks' do
       should translate_to %(Check this thing out:\n\n"I said a thing")
