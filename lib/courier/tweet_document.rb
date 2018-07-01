@@ -21,7 +21,7 @@ module Courier
     end
 
     def characters(string)
-      @contents << string
+      @contents << string.gsub(/\s+/, ' ')
     end
 
     def end_element(name)
@@ -36,8 +36,9 @@ module Courier
     end
 
     def end_document
-      @contents.chomp! ''
-      @contents << " #{@urls.join(' ')}" unless @urls.empty?
+      contents.chomp! ''
+      contents.chomp! ' '
+      contents << " #{@urls.join(' ')}" unless @urls.empty?
     end
   end
 end

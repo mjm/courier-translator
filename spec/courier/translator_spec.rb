@@ -73,7 +73,10 @@ RSpec.describe Courier::Translator do
 
   context 'when the input has multiple links' do
     let(:input) do
-      %(This is <a href="http://example.com/foo">some</a> <a href="http://example.com/bar">#content.</a>)
+      %(
+        This is <a href="http://example.com/foo">some</a>
+        <a href="http://example.com/bar">#content.</a>
+      )
     end
 
     it 'appends each URL at the end in the order they appear' do
