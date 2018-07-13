@@ -1,6 +1,7 @@
 runtime: ruby
 env: flex
 entrypoint: bundle exec rackup --port $PORT
+service: translator
 
 manual_scaling:
   instances: 1
