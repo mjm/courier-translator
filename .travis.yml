@@ -1,7 +1,14 @@
 sudo: false
 language: ruby
 rvm:
-  - 2.5.1
+- 2.5.1
 before_install: gem install bundler -v 1.16.1
-bundler_args: --without development
+bundler_args: "--without development"
 cache: bundler
+deploy:
+  provider: heroku
+  api_key:
+    secure: o+oTywwUKh4sXg8RRMu8cAgWZjVvC/Sy7ERlaHelgPQfSu87n5Y1lSnUMKtOGWKjE6WYeMpUuLiUC9a5ZSaAsIZlubqvM8bwQ9JvRN8mF59ZAwetvxpeXyij3Ks4A3Vl45x1XheoT+TEqF5jxzmKCr0Vqdo1778GVC0oLmPNdB4kQESkQ/PghOQqB/Ui3LiXJnABBbyG11omneLeAUGf/SeAPI95v2wJynRHLbWawaLm9lshKDf0QDdCv/eGUcvNXqpLQATs21CHsmAAQd2/pjRB+Btm8ypkRUPqQhgIjC59yHC8qZz2Ux9yQKHDWz/4oO+0jaWrKuUbkmh1H87y+9keO7xb20uTJxWPY/0RLS0ytb6kJYz9kOXoPTW9kZChfwAz2LZ6za3876jzcmHVO//RSO/4dNHb7d04SbNt/mEoeGC22zO6uy/Qb+5BVMhl/1z3peFEJoqBc6QhLXJZLT1QBLGcJPI5v0IN8R75gn4pDiIBa8IVmoIvQ3Qz6d8VFFSdIpgXU7chmk2Km5DA3Dm5z2ujOWGQf9z8tKK2jSeSgVl5rLX53oAEgKfzgjviP9Avg+3PNAZ0q5/eNCbpTLUtdLVMtUpoaeeTusb0L8oh5vfg0rirptVt5XpQFfk3tV6y4pbcWoKf9e5nthqBmdAeguBwokOO4dpGUJTKl1w=
+  app: courier-translator
+  on:
+    repo: mjm/courier-translator
