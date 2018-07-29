@@ -1,4 +1,7 @@
-$LOAD_PATH.unshift(File.expand_path('./lib'))
-require 'courier/translator/app'
+#\ -p 5000
 
-run Courier::Translator::App
+$LOAD_PATH.unshift(__dir__)
+require 'app'
+
+use Courier::Middleware::Documentation, __dir__
+run App

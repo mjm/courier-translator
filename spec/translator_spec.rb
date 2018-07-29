@@ -1,11 +1,7 @@
-RSpec.describe Courier::Translator do
+RSpec.describe Translator do
   let(:input) { '' }
-  subject { Courier::Translator.new(input) }
+  subject { Translator.new(input) }
   let(:translated) { subject.translate }
-
-  it 'has a version number' do
-    expect(Courier::Translator::VERSION).not_to be nil
-  end
 
   matcher :translate_to do |expected|
     match do |actual|

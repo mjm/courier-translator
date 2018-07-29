@@ -1,24 +1,15 @@
-source "https://rubygems.org"
-ruby "2.5.1"
+source 'https://rubygems.org'
+ruby '2.5.1'
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-# Specify your gem's dependencies in courier-translator.gemspec
-gemspec
-
+gem 'courier-service', github: 'mjm/courier-service'
+gem 'nokogiri'
 gem 'puma'
-gem 'rdiscount'
-
-group :development do
-  gem 'rerun'
-end
-
-group :development, :test do
-  gem 'bundler', '~> 1.16'
-  gem 'rake', '~> 10.0'
-end
+gem 'rack'
+gem 'rake', '~> 10.0'
+gem 'twirp'
 
 group :test do
-  gem 'rack-test'
   gem 'rspec', '~> 3.0'
 end
