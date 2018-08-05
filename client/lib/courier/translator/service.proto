@@ -1,0 +1,23 @@
+syntax = "proto3";
+package courier;
+
+/**
+ * Service for translating blog post content into tweet content.
+ * This service doesn't post anything to Twitter. Instead, it just produces content that another service could potentially post to Twitter.
+ */
+service Translator {
+  /// Translates a blog post to a tweet.
+  rpc Translate(TranslateRequest) returns (TranslatedTweet);
+}
+
+/// Request message for translating a post.
+message TranslateRequest {
+  /// The HTML content of the blog post to translate.
+  string content_html = 1;
+}
+
+/// Message describing the tweet content of a translated blog post.
+message TranslatedTweet {
+  /// The body text of the tweet.
+  string body = 1;
+}
