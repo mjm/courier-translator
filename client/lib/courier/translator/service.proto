@@ -7,7 +7,7 @@ package courier;
  */
 service Translator {
   /// Translates a blog post to a tweet.
-  rpc Translate(TranslateRequest) returns (TranslatedTweet);
+  rpc Translate(TranslateRequest) returns (TranslatedTweetList);
 }
 
 /// Request message for translating a post.
@@ -16,8 +16,16 @@ message TranslateRequest {
   string content_html = 1;
 }
 
+/// Message describing a list of translated tweets.
+message TranslatedTweetList {
+  /// The list of translated tweets.
+  repeated TranslatedTweet tweets = 1;
+}
+
 /// Message describing the tweet content of a translated blog post.
 message TranslatedTweet {
   /// The body text of the tweet.
   string body = 1;
+  /// The URLs for any media that should be included with the tweet.
+  repeated string media_urls = 2;
 }

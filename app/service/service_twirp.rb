@@ -6,7 +6,7 @@ module Courier
   class TranslatorService < Twirp::Service
     package 'courier'
     service 'Translator'
-    rpc :Translate, TranslateRequest, TranslatedTweet, :ruby_method => :translate
+    rpc :Translate, TranslateRequest, TranslatedTweetList, :ruby_method => :translate
   end
 
   class TranslatorClient < Twirp::Client

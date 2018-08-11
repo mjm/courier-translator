@@ -7,12 +7,17 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "courier.TranslateRequest" do
     optional :content_html, :string, 1
   end
+  add_message "courier.TranslatedTweetList" do
+    repeated :tweets, :message, 1, "courier.TranslatedTweet"
+  end
   add_message "courier.TranslatedTweet" do
     optional :body, :string, 1
+    repeated :media_urls, :string, 2
   end
 end
 
 module Courier
   TranslateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("courier.TranslateRequest").msgclass
+  TranslatedTweetList = Google::Protobuf::DescriptorPool.generated_pool.lookup("courier.TranslatedTweetList").msgclass
   TranslatedTweet = Google::Protobuf::DescriptorPool.generated_pool.lookup("courier.TranslatedTweet").msgclass
 end
