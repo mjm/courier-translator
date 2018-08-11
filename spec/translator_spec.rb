@@ -1,11 +1,11 @@
 RSpec.describe Translator do
   let(:input) { '' }
   subject { Translator.new(input) }
-  let(:translated) { subject.translate }
+  let(:translated) { subject.tweets.first }
 
   matcher :translate_to do |expected|
     match do |actual|
-      actual.translate == expected
+      actual.tweets.first == expected
     end
 
     failure_message do |actual|
@@ -24,6 +24,10 @@ RSpec.describe Translator do
 
     it 'translates to the input string' do
       should translate_to input
+    end
+
+    it 'attaches no media URLs' do
+      expect(subject.media_urls).to eq []
     end
   end
 
@@ -108,6 +112,25 @@ RSpec.describe Translator do
 
     it 'strips the trailing space' do
       should translate_to 'This is some text'
+    end
+  end
+
+  context 'when the input has image tags in it' do
+    let(:input) do
+      %(<p>Check it out!</p>
+        <p><img src="https://example.com/foo.jpg">
+           <img src="https://example.com/bar.jpg"></p>)
+    end
+
+    it 'translates the body text' do
+      should translate_to 'Check it out!'
+    end
+
+    it 'attaches the image URLs as a media item' do
+      expect(subject.media_urls).to eq %w[
+        https://example.com/foo.jpg
+        https://example.com/bar.jpg
+      ]
     end
   end
 end

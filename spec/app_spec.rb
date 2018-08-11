@@ -10,7 +10,7 @@ RSpec.describe TranslatorHandler do
 
     it 'translates the HTML provided' do
       expect(Translator).to receive(:new).with('foo bar')
-      expect(translator).to receive(:translate).and_return('translated')
+      expect(translator).to receive(:tweets).and_return(%w[translated])
       expect(response.body).to eq 'translated'
     end
   end

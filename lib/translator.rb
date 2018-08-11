@@ -9,13 +9,24 @@ class Translator
     @input = input
   end
 
-  def translate
-    return @translated if @translated
-    parser.parse(input)
-    @translated = document.contents
+  def tweets
+    translate
+    [@body]
+  end
+
+  def media_urls
+    translate
+    @media_urls
   end
 
   private
+
+  def translate
+    return if @translated
+    parser.parse(input)
+    @body = document.contents
+    @media_urls = document.media_urls
+  end
 
   def document
     @document ||= TweetDocument.new

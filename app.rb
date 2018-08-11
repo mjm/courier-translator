@@ -4,7 +4,7 @@ require 'translator'
 class TranslatorHandler
   def translate(req, _env)
     translator = Translator.new(req.content_html)
-    { body: translator.translate }
+    { body: translator.tweets.first }
   end
 end
 
