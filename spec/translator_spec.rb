@@ -29,6 +29,13 @@ RSpec.describe Translator do
     it 'attaches no media URLs' do
       expect(subject.media_urls).to eq []
     end
+
+    context 'and tweets are requested multiple times' do
+      it 'returns the same tweet text' do
+        subject.tweets
+        should translate_to input
+      end
+    end
   end
 
   context 'when the input has undesired HTML tags' do

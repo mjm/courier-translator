@@ -41,5 +41,6 @@ class TweetDocument < Nokogiri::XML::SAX::Document
   def end_document
     contents.strip!
     contents << " #{@urls.join(' ')}" unless @urls.empty?
+    contents.freeze
   end
 end
